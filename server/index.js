@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const app        = express();
 const PORT       = process.env.PORT || 5000;
+const HOST       = process.env.HOST || '127.0.0.1';
 const JWT_SECRET = process.env.JWT_SECRET || 'sra-secret-2024';
 
 app.use(cors());
@@ -387,7 +388,7 @@ if (process.env.NODE_ENV === 'production') {
 const startServer = async () => {
   try {
     await db.verifyConnection();
-    app.listen(PORT, () => {
+    app.listen(PORT, HOST, () => {
       console.log(`✅ SRA Server v2.0 running on http://localhost:${PORT}`);
     });
   } catch {
